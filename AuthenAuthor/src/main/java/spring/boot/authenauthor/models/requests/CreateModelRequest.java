@@ -1,0 +1,37 @@
+package spring.boot.authenauthor.models.requests;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CreateModelRequest {
+    @JsonProperty("model_id")
+    private Integer Id;
+
+    @NotEmpty(message = "model_name cannot be blank")
+    @JsonProperty("model_name")
+    private String name;
+
+    @NotEmpty(message = "model_description cannot be blank")
+    @JsonProperty("model_description")
+    private String description;
+
+//
+//    @NotEmpty(message = "actionRequestList cannot be blank")
+    @Valid
+    @JsonProperty("action_id_list")
+    private List<CreateActionRequest> actionRequestList;
+
+
+
+}
